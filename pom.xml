@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example.howtodoinjava</groupId>
@@ -38,6 +39,35 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.messaging.saaj</groupId>
+			<artifactId>saaj-impl</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>jaxws-api</artifactId>
+			<version>2.2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -47,22 +77,53 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>1.6</version>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.8.1</version>
+				<configuration>
+					<extension>true</extension>
+					<removeOldOutput>false</removeOldOutput>
+					<forceRegenerate>true</forceRegenerate>
+				</configuration>
+
 				<executions>
 					<execution>
-						<id>xjc</id>
+						<id>business-objects</id>
+						<phase>generate-sources</phase>
 						<goals>
-							<goal>xjc</goal>
+							<goal>generate</goal>
 						</goals>
+						<configuration>
+							<catalog>src/main/resources/schema/catalog.cat</catalog>
+							<schemaIncludes>
+								<include>system.xsd</include>
+								<include>common.xsd</include>
+								<include>person.xsd</include>
+								<include>credentials.xsd</include>
+								<include>membership.xsd</include>
+								<include>qualifications.xsd</include>
+								<include>competition.xsd</include>
+								<include>payment.xsd</include>
+								<include>invoice.xsd</include>
+								<include>marketing.xsd</include>
+								<include>system-process.xsd</include>
+								<include>person-process.xsd</include>
+								<include>membership-process.xsd</include>
+								<include>credentials-process.xsd</include>
+								<include>qualifications-process.xsd</include>
+								<include>communique-process.xsd</include>
+								<include>payment-process.xsd</include>
+								<include>invoice-process.xsd</include>
+								<include>competition-process.xsd</include>
+							</schemaIncludes>
+							<bindingDirectory>src/main/resources/binding</bindingDirectory>
+							<bindingIncludes>
+								<include>bindings.xml</include>
+							</bindingIncludes>
+							<schemaDirectory>src/main/resources/schema</schemaDirectory>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
-					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-					<clearOutputDir>false</clearOutputDir>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
