@@ -48,4 +48,13 @@ public class StudentRepository {
 		//Assert.notNull(name, "The Student's name must not be null");
 		return students.get(name);
 	}
+
+	public void addStudent(Student student){
+		Student s = new Student();
+		s.setName(student.getName());
+		s.setAddress(student.getAddress());
+		s.setStandard(student.getStandard());
+
+		this.students.put(s.getName(), s);
+	}
 }

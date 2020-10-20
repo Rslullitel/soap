@@ -8,10 +8,7 @@
 
 package com.howtodoinjava.xml.school;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -41,6 +38,7 @@ import javax.xml.bind.annotation.XmlType;
     "standard",
     "address"
 })
+//@XmlRootElement(name = "Student")
 public class Student {
 
     @XmlElement(required = true)
@@ -49,6 +47,7 @@ public class Student {
     @XmlElement(required = true)
     protected String address;
 
+    public Student(){}
     /**
      * Obtiene el valor de la propiedad name.
      * 

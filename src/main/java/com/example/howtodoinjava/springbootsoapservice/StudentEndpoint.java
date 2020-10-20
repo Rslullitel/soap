@@ -1,13 +1,11 @@
 package com.example.howtodoinjava.springbootsoapservice;
 
+import com.howtodoinjava.xml.school.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-
-import com.howtodoinjava.xml.school.StudentDetailsRequest;
-import com.howtodoinjava.xml.school.StudentDetailsResponse;
 
 @Endpoint
 public class StudentEndpoint {
@@ -25,6 +23,16 @@ public class StudentEndpoint {
 	public StudentDetailsResponse getStudent(@RequestPayload StudentDetailsRequest request) {
 		StudentDetailsResponse response = new StudentDetailsResponse();
 		response.setStudent(StudentRepository.findStudent(request.getName()));
+
+		return response;
+	}
+
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "StudentRequest")
+	@ResponsePayload
+	public StudentResponse addStudent(@RequestPayload StudentRequest request){
+		StudentResponse response = new StudentResponse();
+		StudentRepository.addStudent(request.getStudent());
+		response.setStudent(StudentRepository.findStudent(request.getStudent().getName()));
 
 		return response;
 	}
