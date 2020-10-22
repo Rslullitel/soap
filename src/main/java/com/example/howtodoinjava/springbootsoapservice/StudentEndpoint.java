@@ -10,6 +10,8 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class StudentEndpoint {
 	private static final String NAMESPACE_URI = "http://www.howtodoinjava.com/xml/school";
+	private static final String MSG_ERROR = "Ocurrio un error al intentar guardar la lista de estudiantes";
+	private static final String MSG_SUCCESS = "La lista de estudiantes se guardo exitosamente";
 
 	private StudentRepository StudentRepository;
 
@@ -33,6 +35,22 @@ public class StudentEndpoint {
 		StudentResponse response = new StudentResponse();
 		StudentRepository.addStudent(request.getStudent());
 		response.setStudent(StudentRepository.findStudent(request.getStudent().getName()));
+
+		return response;
+	}
+
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "StudentListRequest")
+	@ResponsePayload
+	public StudentListResponse saveListStudent(@RequestPayload StudentListRequest request){
+		StudentListResponse response = new StudentListResponse();
+		if(request == null){
+			response.setMsg(MSG_ERROR); //tirar mensaje de error (excepcion)
+		}else{
+			for(Student s : request.getStudents()){
+				StudentRepository.addStudent(s);
+			}
+			response.setMsg(MSG_SUCCESS);// mensaje de guardado exitoso
+		}
 
 		return response;
 	}

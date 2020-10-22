@@ -32,6 +32,22 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="StudentListRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="wrapper" type="tns:StudentWrapper"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="StudentListResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Msg" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:complexType name="Student">
         <xs:sequence>
@@ -40,5 +56,12 @@
             <xs:element name="address" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-    
+
+    <xs:complexType name="StudentWrapper">
+        <xs:sequence>
+            <xs:element name="student" type="tns:Student"/>
+            <xs:element name="student2" type="tns:Student"/>
+        </xs:sequence>
+    </xs:complexType>
+
 </xs:schema>
