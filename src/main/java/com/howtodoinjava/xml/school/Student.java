@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.*;
     "standard",
     "address"
 })
-//@XmlRootElement(name = "Student")
+@XmlRootElement(name = "Student")
 public class Student {
 
     @XmlElement(required = true)

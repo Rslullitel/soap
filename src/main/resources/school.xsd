@@ -36,7 +36,7 @@
     <xs:element name="StudentListRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="wrapper" type="tns:StudentWrapper"/>
+                <xs:element name="studentList" type="tns:Student" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -54,13 +54,6 @@
             <xs:element name="name" type="xs:string"/>
             <xs:element name="standard" type="xs:int"/>
             <xs:element name="address" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <xs:complexType name="StudentWrapper">
-        <xs:sequence>
-            <xs:element name="student" type="tns:Student"/>
-            <xs:element name="student2" type="tns:Student"/>
         </xs:sequence>
     </xs:complexType>
 

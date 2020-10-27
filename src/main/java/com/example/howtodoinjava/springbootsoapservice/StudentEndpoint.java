@@ -51,7 +51,6 @@ public class StudentEndpoint {
 			}
 			response.setMsg(MSG_SUCCESS);// mensaje de guardado exitoso
 		}
-
 		return response;
 	}
 }
