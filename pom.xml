@@ -76,7 +76,29 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- generar clases del xsd: "mvn generate-sources"
+			jaxb2 maven plugin documentation http://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.2/
+			mojohaus.org/jaxb2-maven-plugin/Documentation/v2.2/xjc-mojo.html#schemaDirectory-->
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>2.5.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sources>
+						<source>${project.basedir}/src/main/resources/school.xsd</source>
+					</sources>
+					<packageName>howtodoinjava.xml.school</packageName>
+				</configuration>
+			</plugin>
+			<!--<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<version>0.8.1</version>
@@ -124,7 +146,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 			<!--<plugin>
 				<groupId>com.github.davidmoten</groupId>
 				<artifactId>jax-maven-plugin</artifactId>
