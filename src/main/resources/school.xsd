@@ -54,6 +54,13 @@
             <xs:element name="name" type="xs:string"/>
             <xs:element name="standard" type="xs:int"/>
             <xs:element name="address" type="xs:string"/>
+            <xs:element name="courseList" type="tns:Course" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Course">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 

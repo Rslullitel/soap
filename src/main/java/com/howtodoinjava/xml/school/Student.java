@@ -9,6 +9,7 @@
 package com.howtodoinjava.xml.school;
 
 import javax.xml.bind.annotation.*;
+import java.util.List;
 
 
 /**
@@ -36,7 +37,8 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "Student", propOrder = {
     "name",
     "standard",
-    "address"
+    "address",
+    "courseList"
 })
 @XmlRootElement(name = "Student")
 public class Student {
@@ -46,6 +48,7 @@ public class Student {
     protected int standard;
     @XmlElement(required = true)
     protected String address;
+    protected List<Course> courseList;
 
     public Student(){}
     /**
@@ -110,6 +113,30 @@ public class Student {
      */
     public void setAddress(String value) {
         this.address = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad name.
+     *
+     * @return
+     *     possible object is
+     *     {@link Course }
+     *
+     */
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
+    /**
+     * Define el valor de la propiedad name.
+     *
+     * @param value
+     *     allowed object is
+     *     {@link Course }
+     *
+     */
+    public void setCourseList(List<Course> value) {
+        this.courseList = value;
     }
 
 }

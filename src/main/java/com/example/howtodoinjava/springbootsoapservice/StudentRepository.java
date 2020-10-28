@@ -1,10 +1,12 @@
 package com.example.howtodoinjava.springbootsoapservice;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import com.howtodoinjava.xml.school.Course;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
@@ -50,12 +52,7 @@ public class StudentRepository {
 	}
 
 	public void addStudent(Student student){
-		Student s = new Student();
-		s.setName(student.getName());
-		s.setAddress(student.getAddress());
-		s.setStandard(student.getStandard());
-
-		this.students.put(s.getName(), s);
+		this.students.put(student.getName(), student);
 	}
 
 }
